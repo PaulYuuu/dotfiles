@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -euo pipefail
+
+readonly AGE_KEY_PATH="${HOME}/.ssh/age"
+
+if [ -f "${AGE_KEY_PATH}" ] && [ -s "${AGE_KEY_PATH}" ]; then
+    echo "age identity key already exists at ${AGE_KEY_PATH}. Skipping bootstrap."
+    exit 0
+fi
+
+if ! command -v age >/dev/null 2>&1; then
+    echo "Error: 'age' not found in PATH. Please install it first." >&2
+    exit 1
+fi
+
+echo "Saving age identity key to ${AGE_KEY_PATH}..."
+mkdir -p "$(dirname "${AGE_KEY_PATH}")"
+chmod 700 "$(dirname "${AGE_KEY_PATH}")"
+
+cat > "${AGE_KEY_PATH}" << 'EOF'
+{{ (bitwarden "item" "age-ssh").sshKey.privateKey | trim }}
+EOF
+chmod 600 "${AGE_KEY_PATH}"
+
+echo "Bootstrap successful. age identity key is now configured at ${AGE_KEY_PATH}"

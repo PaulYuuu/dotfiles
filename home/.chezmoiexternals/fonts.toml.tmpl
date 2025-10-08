@@ -1,0 +1,22 @@
+{{- if and (eq .chezmoi.os "linux") (not .isEphemeral) -}}
+[".local/share/fonts/iMWriting"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "ryanoasis/nerd-fonts" "iA-Writer.zip" | quote }}
+    exact = true
+    include = ["iMWritingMonoNerdFontMono-*.ttf"]
+    refreshPeriod = "720h"
+
+[".local/share/fonts/MapleMono"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "subframe7536/maple-font" "MapleMono-CN-unhinted.zip" | quote }}
+    exact = true
+    include = ["MapleMono-CN*.ttf"]
+    refreshPeriod = "720h"
+
+[".local/share/fonts/SymbolsNerdFont"]
+    type = "archive"
+    url = {{ gitHubLatestReleaseAssetURL "ryanoasis/nerd-fonts" "NerdFontsSymbolsOnly.zip" | quote }}
+    exact = true
+    include = ["*.ttf"]
+    refreshPeriod = "720h"
+{{- end }}

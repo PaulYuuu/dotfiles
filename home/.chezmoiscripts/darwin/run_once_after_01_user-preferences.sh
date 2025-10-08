@@ -1,0 +1,70 @@
+#!/bin/bash
+# Script 1: User-Level Preferences
+
+set -eufo pipefail
+
+echo "Applying user-level preferences..."
+
+# --- General UI & Interaction ---
+defaults write NSGlobalDomain AppleMiniaturizeOnDoubleClick -bool false
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
+# --- Input & Text Correction ---
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticTextCorrectionEnabled -bool false
+
+# --- Keyboard & Input Devices ---
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -bool true
+defaults write NSGlobalDomain com.apple.trackpad.forceClick -bool false
+
+# --- Language & Region (Customized for Mainland China) ---
+defaults write NSGlobalDomain AppleLanguages -array "zh-Hans-CN" "en-US"
+defaults write NSGlobalDomain AppleLocale -string "zh_CN@calendar=gregorian"
+defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleFirstWeekday -dict gregorian 2
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict 1 "yyyy-MM-dd"
+
+# --- Finder ---
+defaults write com.apple.finder QuitMenuItem -bool true
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# --- Dock ---
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock tilesize -int 72
+defaults write com.apple.dock mineffect -string "scale"
+defaults write com.apple.dock showDesktopGestureEnabled -bool false
+defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
+defaults write com.apple.dock showMissionControlGestureEnabled -bool false
+
+# --- Software Update ---
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+defaults write com.apple.SoftwareUpdate AutomaticDownload -bool true
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -bool true
+defaults write com.apple.commerce AutoUpdate -bool true
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
+
+# --- Misc Settings ---
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+defaults write com.apple.screencapture disable-shadow -bool true
+defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool false
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+echo "User-level setup complete."
