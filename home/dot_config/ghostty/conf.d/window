@@ -1,0 +1,11 @@
+fullscreen = false
+window-padding-color = extend
+window-inherit-working-directory = true
+window-inherit-font-size = true
+window-decoration = auto
+window-theme = auto
+window-new-tab-position = current
+resize-overlay = after-first
+resize-overlay-position = center
+confirm-close-surface = true
+quit-after-last-window-closed = true
