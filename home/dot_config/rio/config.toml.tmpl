@@ -1,0 +1,57 @@
+confirm-before-quit = false
+draw-bold-text-with-light-colors = true
+hide-cursor-when-typing = true
+ignore-selection-foreground-color = true
+option-as-alt = "Left"
+theme = "Nord"
+
+# XDG Base Directory Specification
+env-vars = [
+  "XDG_BIN_HOME={{ .chezmoi.homeDir }}/.local/bin",
+  "XDG_CACHE_HOME={{ .chezmoi.homeDir }}/.cache",
+  "XDG_CONFIG_HOME={{ .chezmoi.homeDir }}/.config",
+  "XDG_DATA_HOME={{ .chezmoi.homeDir }}/.local/share",
+  "XDG_PROJECTS_DIR={{ .chezmoi.homeDir }}/Projects",
+  "XDG_STATE_HOME={{ .chezmoi.homeDir }}/.local/state",
+]
+
+# [adaptive-theme]
+# dark = "Nord"
+# light = "Nord-Light"
+
+[bindings]
+keys = [
+  { key = "q", with = "super", action = "Quit" },
+  { key = "return", with = "shift", esc = "\n" },
+  { key = "return", with = "super", action = "ToggleFullscreen" }
+]
+
+[cursor]
+blinking = true
+shape = "Block"
+
+[editor]
+program = "nvim"
+
+[fonts]
+family = "{{ .terminal.fontFamily }}"
+size = {{ .terminal.fontSize }}
+use-drawable-chars = false
+
+[navigation]
+clickable = true
+hide-if-single = true
+mode = "Bookmark"
+unfocused-split-opacity = 0.9
+use-current-path = true
+
+[shell]
+program = "{{ index .terminal.nushellBin .chezmoi.os }}"
+args = ["--login"]
+
+[window]
+blur = true
+decorations = "Transparent"
+macos-use-unified-titlebar = true
+mode = "Maximized"
+opacity = 0.7

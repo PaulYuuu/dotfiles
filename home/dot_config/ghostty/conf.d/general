@@ -1,0 +1,11 @@
+grapheme-width-method = unicode
+link-url = true
+theme = Nord
+shell-integration = detect
+shell-integration-features = no-cursor,sudo,title
+macos-non-native-fullscreen = false
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+macos-window-shadow = false
+desktop-notifications = true
+term = xterm-ghostty

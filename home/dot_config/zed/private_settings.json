@@ -1,0 +1,41 @@
+{
+  "agent": {
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro"
+    }
+  },
+
+  "icon_theme": "Material Icon Theme",
+  "theme": {
+    "mode": "system",
+    "light": "Nord Light",
+    "dark": "Nord"
+  },
+  "ui_font_family": "Maple Mono CN",
+  "ui_font_size": 27,
+  "buffer_font_family": "iMWritingMono Nerd Font Mono",
+  "buffer_font_size": 27,
+
+  "minimap": {
+    "show": "auto"
+  },
+  "tabs": {
+    "git_status": false
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_onboarding_banner": false,
+    "show_sign_in": false,
+    "show_user_picture": true
+  },
+
+  "autosave": "on_focus_change",
+
+  "when_closing_with_no_tabs": "close_window",
+  "on_last_window_closed": "quit_app"
+}
