@@ -1,0 +1,34 @@
+{{- if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/**
+.config/homebrew/**
+.hushlogin
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+{{- end }}
+
+{{- if .isEphemeral }}
+.chezmoiscripts/00-bootstrap-age-key.sh
+.chezmoiscripts/linux/00_setup-repos.sh
+.chezmoiscripts/linux/02_configure-vscode.sh
+
+.config/claude/**
+.config/direnv/**
+.config/gh/**
+.config/ghostty/**
+.config/git/**
+.config/helix/**
+.config/kitty/**
+.config/nushell/**
+.config/rio/**
+.config/tealdeer/**
+.config/vscode/**
+.config/zed/**
+.config/zsh/conf.d/98_bitwarden.zsh
+.config/zsh/conf.d/99_private.zsh
+
+.ssh/**
+!.ssh/config
+!.ssh/config.d/global.tmpl
+{{- end }}
