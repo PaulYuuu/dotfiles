@@ -1,0 +1,39 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "Installing dnf groups and packages…"
+
+{{- $rpmGroups := list "core" "rpm-development-tools" }}
+
+{{- $devTools := list "cargo" "cmake" "golang" "nodejs" "npm" "rust" }}
+{{- $editors := list "neovim" }}
+{{- $terminalTools := list "bat" "fzf" "glow" "ripgrep" "tmux" "zsh" }}
+{{- $systemTools := list "jc" "jq" "podman-compose" "sshpass" "yq" }}
+
+{{- if not .isEphemeral -}}
+{{-   $rpmGroups = concat $rpmGroups (list "development-tools" "gnome-desktop" "container-management" "admin-tools") -}}
+{{-   $devTools = concat $devTools (list "gh" "git-delta" "git-lfs" "gitui" "glab" "tokei" "uv") -}}
+{{-   $editors = concat $editors (list "code" "helix") -}}
+{{-   $terminalTools = concat $terminalTools (list "atuin" "carapace-bin" "direnv" "eza" "fd" "ghostty" "gpaste" "just" "kitty" "lnav" "nushell" "rio" "sheldon" "starship" "zoxide") -}}
+{{-   $uiTools := list "flatpak" "gnome-shell-extension-blur-my-shell" "gnome-shell-extension-just-perfection" "gnome-shell-extension-pop-shell" "gnome-shell-theme-yaru" "gnome-shell-extension-user-theme" "ulauncher" -}}
+{{-   $systemTools = concat $systemTools (list "age" "bottom" "conserver" "duf" "procs" "tealdeer" "vivid") -}}
+{{-   $excludeGroups := list "firefox" "libreoffice" -}}
+{{-   $allPackages := concat $devTools $editors $terminalTools $uiTools $systemTools }}
+
+echo "Installing package groups…"
+sudo dnf group install -y --nogpgcheck --skip-broken{{- range $rpmGroups }} "{{ . }}"{{- end }}
+
+echo "Removing unwanted groups…"
+sudo dnf group remove -y{{- range $excludeGroups }} "{{ . }}"{{- end }} || true
+
+echo "Installing individual packages…"
+sudo dnf install -y --nogpgcheck --skip-broken{{- range $allPackages }} {{ . }}{{- end }}
+{{- else -}}
+{{-   $allPackages := concat $devTools $editors $terminalTools $systemTools -}}
+
+echo "Installing package groups…"
+sudo dnf group install -y --nogpgcheck --skip-broken{{- range $rpmGroups }} "{{ . }}"{{- end }}
+
+echo "Installing individual packages…"
+sudo dnf install -y --nogpgcheck --skip-broken{{- range $allPackages }} {{ . }}{{- end }}
+{{- end }}

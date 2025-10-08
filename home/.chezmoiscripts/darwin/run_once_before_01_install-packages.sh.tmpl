@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "Installing/updating packages…"
+
+# Install packages using static Brewfile from chezmoi source
+brew bundle --file="{{ .chezmoi.sourceDir }}/dot_config/homebrew/Brewfile"
