@@ -1,0 +1,13 @@
+terminal:
+  fontSize: 27
+  fontFamily: "iMWritingMono Nerd Font Mono"
+  nushellBin:
+    darwin: "/opt/homebrew/bin/nu"
+    linux: "/usr/bin/nu"
+  ghostty:
+    fontFamily: "Maple Mono CN"
+    symbolFontFamily: "Symbols Nerd Font Mono"
+  kitty:
+    hideWindowDecorations:
+      darwin: "titlebar-only"
+      linux: "yes"
