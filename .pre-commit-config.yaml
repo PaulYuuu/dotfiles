@@ -1,0 +1,44 @@
+default_install_hook_types: [pre-commit, commit-msg]
+default_stages: [pre-commit]
+ci:
+  autofix_prs: false
+  autoupdate_schedule: quarterly
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v6.0.0
+  hooks:
+    - id: check-json
+      name: Check JSON syntax
+    - id: check-yaml
+      name: Check YAML syntax
+    - id: check-toml
+      name: Check TOML syntax
+- repo: https://github.com/scop/pre-commit-shfmt
+  rev: v3.12.0-2
+  hooks:
+    - id: shfmt
+      name: Format shell scripts
+- repo: https://github.com/editorconfig-checker/editorconfig-checker
+  rev: v3.4.0
+  hooks:
+    - id: editorconfig-checker
+      name: Check EditorConfig rules
+- repo: https://github.com/gitleaks/gitleaks
+  rev: v8.28.0
+  hooks:
+    - id: gitleaks
+      name: Detect hardcoded secrets
+- repo: https://github.com/adhtruong/mirrors-typos
+  rev: v1.38.1
+  hooks:
+    - id: typos
+      name: Detect spelling typos
+      args: [--force-exclude]
+      exclude: '.age'
+- repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+  rev: v9.23.0
+  hooks:
+    - id: commitlint
+      name: Lint commit message
+      additional_dependencies: ['@commitlint/config-conventional']
+      stages: [commit-msg]
