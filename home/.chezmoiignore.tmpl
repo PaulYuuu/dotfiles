@@ -6,29 +6,32 @@
 
 {{- if ne .chezmoi.os "linux" }}
 .chezmoiscripts/linux/**
+.config/pop-shell/**
 {{- end }}
 
 {{- if .isEphemeral }}
-.chezmoiscripts/00-bootstrap-age-key.sh
-.chezmoiscripts/linux/00_setup-repos.sh
-.chezmoiscripts/linux/02_configure-vscode.sh
+.chezmoiscripts/**
+!.chezmoiscripts/linux/01_install-packages.sh
+!.chezmoiscripts/linux/01_setup-shell.sh
 
-.config/claude/**
-.config/direnv/**
-.config/gh/**
-.config/ghostty/**
-.config/git/**
-.config/helix/**
-.config/kitty/**
-.config/nushell/**
-.config/rio/**
-.config/tealdeer/**
-.config/vscode/**
-.config/zed/**
+.config/*
+!.config/atuin/
+!.config/bat/
+!.config/bottom/
+!.config/eza/
+!.config/fastfetch/
+!.config/glow/
+!.config/npm/
+!.config/ripgrep/
+!.config/sheldon/
+!.config/starship/
+!.config/zsh/
 .config/zsh/conf.d/98_bitwarden.zsh
 .config/zsh/conf.d/99_private.zsh
 
-.ssh/**
+.ssh/*
 !.ssh/config
-!.ssh/config.d/global.tmpl
+!.ssh/config.d/
+.ssh/config.d/*
+!.ssh/config.d/global
 {{- end }}

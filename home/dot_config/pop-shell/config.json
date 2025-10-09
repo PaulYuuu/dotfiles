@@ -1,0 +1,19 @@
+{
+  "active-hint": "on",
+  "active-hint-border-radius": 2,
+  "smart-gaps": true,
+  "stacking-with-mouse": true,
+  "float": [
+    {
+      "class": "Gnome-control-center"
+    },
+    {
+      "title": "Preferences"
+    },
+    {
+      "class": "Ulauncher"
+    }
+  ],
+  "skiptaskbarhidden": [],
+  "log_on_focus": false
+}
