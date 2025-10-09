@@ -1,0 +1,17 @@
+{{ if not .isEphemeral -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+# Set personal git config for dotfiles repository
+git -C "${CHEZMOI_WORKING_TREE}" config user.email {{ .user.personal.email | quote }}
+git -C "${CHEZMOI_WORKING_TREE}" config user.signingkey "~/.ssh/personal.pub"
+git -C "${CHEZMOI_WORKING_TREE}" config gpg.ssh.allowedSignersFile "~/.ssh/personal.pub"
+
+# Ensure remote URL uses SSH for push access
+current_url=$(git -C "${CHEZMOI_WORKING_TREE}" remote get-url origin)
+if [[ "$current_url" == https://github.com/* ]]; then
+  ssh_url="${current_url/https:\/\/github.com\//git@github.com:}"
+  git -C "${CHEZMOI_WORKING_TREE}" remote set-url origin "$ssh_url"
+fi
+{{- end }}
