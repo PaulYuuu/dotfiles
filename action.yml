@@ -1,0 +1,6 @@
+name: 'Test chezmoi configuration'
+description: 'Test chezmoi dotfiles configuration in CentOS Stream 10'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
