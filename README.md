@@ -112,6 +112,24 @@ Hooks include:
 - Spell checking (typos)
 - Commit message linting (conventional commits)
 
+### Continuous Integration
+
+Automated testing runs on:
+- Pull requests to main branch
+- Weekly schedule (Sundays)
+- Manual workflow dispatch
+
+Tests validate:
+- Multi-architecture compatibility (amd64/arm64)
+- Ephemeral system detection and configuration
+- External binary downloads
+- Script execution in CentOS Stream 10 container
+
+Dependencies are automatically updated:
+- **Pre-commit hooks**: Quarterly via pre-commit.ci
+- **GitHub Actions**: Quarterly via Dependabot
+- **Bot PRs**: Auto-merged after tests pass
+
 ### Making Changes
 
 1. Edit files in the chezmoi source directory:
