@@ -5,7 +5,7 @@ echo "Setting up third-party repositories…"
 
 # Enable RPM Fusion repositories
 for repo in free nonfree; do
-  sudo dnf install -y "https://download1.rpmfusion.org/${repo}/fedora/rpmfusion-${repo}-release-$(rpm -E %fedora).noarch.rpm"
+  sudo dnf install -y -q "https://download1.rpmfusion.org/${repo}/fedora/rpmfusion-${repo}-release-$(rpm -E %fedora).noarch.rpm"
 done
 
 # Enable COPR repositories
@@ -13,7 +13,7 @@ sudo dnf copr enable -y skoved/vivid >/dev/null 2>&1
 
 # Add Terra repository
 if ! rpm -q terra-release &>/dev/null; then
-  sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+  sudo dnf install -y -q --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 fi
 
 # Add VS Code repository
