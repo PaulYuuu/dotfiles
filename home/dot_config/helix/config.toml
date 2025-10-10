@@ -48,7 +48,15 @@ wrap-at-text-width = true
 [editor.statusline]
 left = ["mode", "spinner", "file-name"]
 center = []
-right = ["diagnostics", "selections", "position", "position-percentage", "file-encoding", "file-type", "total-line-numbers"]
+right = [
+  "diagnostics",
+  "selections",
+  "position",
+  "position-percentage",
+  "file-encoding",
+  "file-type",
+  "total-line-numbers",
+]
 separator = "│"
 mode.normal = "Normal"
 mode.insert = "Insert"

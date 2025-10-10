@@ -156,5 +156,5 @@ format = "[ $symbol]($style)"
 
 [character]
 success_symbol = "[❯](nord15)"
-error_symbol   = "[❯](nord11)"
-vimcmd_symbol  = "[❮](nord14)"
+error_symbol = "[❯](nord11)"
+vimcmd_symbol = "[❮](nord14)"
