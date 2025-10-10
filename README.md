@@ -96,21 +96,38 @@ Ephemeral systems automatically exclude:
 
 ## Development
 
+### Quick Start with Just
+
+This repository uses [Just](https://github.com/casey/just) for common tasks:
+
+```bash
+just           # List all available commands
+just check     # Run all pre-commit checks
+just test      # Build and test in container
+just diff      # Show pending changes
+just apply     # Apply configuration
+```
+
+See all commands with `just --list`.
+
 ### Pre-commit Hooks
 
 This repository uses pre-commit hooks for code quality:
 
 ```bash
 pre-commit run --all-files
+# Or use: just check
 ```
 
 Hooks include:
-- YAML and TOML syntax checking
-- Line ending normalization
-- Trailing whitespace removal
-- Secret detection (gitleaks)
-- Spell checking (typos)
-- Commit message linting (conventional commits)
+- **TOML**: Format and lint with taplo
+- **YAML**: Deep validation with yamllint
+- **Shell**: Format with shfmt, check with shellcheck
+- **GitHub Actions**: Validate with actionlint
+- **EditorConfig**: Enforce consistent style
+- **Security**: Secret detection with gitleaks
+- **Spelling**: Typo detection
+- **Commits**: Conventional commit linting
 
 ### Continuous Integration
 
@@ -135,16 +152,24 @@ Dependencies are automatically updated:
 1. Edit files in the chezmoi source directory:
    ```bash
    chezmoi edit ~/.config/app/config
+   # Or: just edit ~/.config/app/config
    ```
 
 2. Review changes:
    ```bash
-   chezmoi diff
+   just diff
+   # Or: chezmoi diff
    ```
 
 3. Apply changes:
    ```bash
-   chezmoi apply
+   just apply
+   # Or: chezmoi apply
+   ```
+
+4. Test locally (optional):
+   ```bash
+   just test  # Run in Podman container
    ```
 
 ## Included Configurations
