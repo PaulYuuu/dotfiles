@@ -21,19 +21,19 @@ echo "Installing dnf groups and packages…"
 {{-   $allPackages := concat $devTools $editors $terminalTools $uiTools $systemTools }}
 
 echo "Installing package groups…"
-sudo dnf group install -y --nogpgcheck --skip-broken{{- range $rpmGroups }} "{{ . }}"{{- end }}
+sudo dnf group install -y -q --nogpgcheck --skip-broken{{- range $rpmGroups }} "{{ . }}"{{- end }}
 
 echo "Removing unwanted groups…"
-sudo dnf group remove -y{{- range $excludeGroups }} "{{ . }}"{{- end }} || true
+sudo dnf group remove -y -q{{- range $excludeGroups }} "{{ . }}"{{- end }} || true
 
 echo "Installing individual packages…"
-sudo dnf install -y --nogpgcheck --skip-broken{{- range $allPackages }} {{ . }}{{- end }}
+sudo dnf install -y -q --nogpgcheck --skip-broken{{- range $allPackages }} {{ . }}{{- end }}
 {{- else -}}
 {{-   $allPackages := concat $devTools $editors $terminalTools $systemTools -}}
 
 echo "Installing package groups…"
-sudo dnf group install -y --nogpgcheck --skip-broken{{- range $rpmGroups }} "{{ . }}"{{- end }}
+sudo dnf group install -y -q --nogpgcheck --skip-broken{{- range $rpmGroups }} "{{ . }}"{{- end }}
 
 echo "Installing individual packages…"
-sudo dnf install -y --nogpgcheck --skip-broken{{- range $allPackages }} {{ . }}{{- end }}
+sudo dnf install -y -q --nogpgcheck --skip-broken{{- range $allPackages }} {{ . }}{{- end }}
 {{- end }}
