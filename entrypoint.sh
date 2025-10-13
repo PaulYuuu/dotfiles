@@ -26,12 +26,6 @@ echo -e "${BLUE}=== Chezmoi Configuration Test ===${RESET}"
 echo "Source directory: ${SOURCE_DIR}"
 echo ""
 
-# Install jq for JSON parsing
-echo "Installing dependencies..."
-sudo dnf install -y -q jq
-echo -e "${GREEN}✓ Dependencies installed${RESET}"
-echo ""
-
 # Initialize chezmoi
 echo -e "${BLUE}=== Initializing chezmoi ===${RESET}"
 chezmoi init
@@ -68,7 +62,7 @@ echo ""
 echo -e "${BLUE}=== Configuration status ===${RESET}"
 STATUS_OUTPUT=$(chezmoi status)
 if [ -z "$STATUS_OUTPUT" ]; then
-  echo -e "${GREEN}✓ All files in sync (no changes)${RESET}"
+  echo -e "${GREEN}✓ All files in sync${RESET}"
 else
   echo "$STATUS_OUTPUT"
 fi

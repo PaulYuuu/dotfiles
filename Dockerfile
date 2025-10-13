@@ -1,4 +1,4 @@
-FROM quay.io/centos/centos:stream10-development
+FROM quay.io/centos/centos:stream10
 
 ARG USERNAME=user
 
@@ -8,12 +8,13 @@ echo 'fastestmirror=True' >> /etc/dnf/dnf.conf
 EOCONF
 
 RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked <<EORUN
-dnf install -y -q sudo git epel-release
+dnf config-manager --set-enabled crb
+dnf install -y -q epel-release git jq sudo
 dnf install -y -q chezmoi
 EORUN
 
 RUN <<EORUN
-useradd -m -u 1000 -s /bin/bash ${USERNAME}
+useradd -m -s /bin/bash ${USERNAME}
 echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME}
 chmod 0440 /etc/sudoers.d/${USERNAME}
 EORUN
