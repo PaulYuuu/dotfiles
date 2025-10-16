@@ -49,7 +49,7 @@
         "Break",
         {
             "type": "Host",
-            "keyColor": "blue",
+            "keyColor": "blue"
         },
         {
             "type": "OS",

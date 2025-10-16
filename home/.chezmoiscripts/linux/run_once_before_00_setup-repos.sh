@@ -9,7 +9,7 @@ for repo in free nonfree; do
 done
 
 # Enable COPR repositories
-for repo in skoved/vivid errornointernet/quickshell; do
+for repo in errornointernet/quickshell gvalkov/vicinae skoved/vivid; do
   sudo dnf copr enable -y "${repo}" >/dev/null 2>&1
 done
 

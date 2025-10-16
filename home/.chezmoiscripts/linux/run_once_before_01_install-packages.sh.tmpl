@@ -11,20 +11,16 @@ echo "Installing dnf groups and packages…"
 {{- $systemTools := list "jq" "podman-compose" "sshpass" "yq" }}
 
 {{- if not .isEphemeral }}
-{{-   $rpmGroups = concat $rpmGroups (list "development-tools" "gnome-desktop" "container-management" "admin-tools") }}
+{{-   $rpmGroups = concat $rpmGroups (list "admin-tools" "container-management" "development-tools" "multimedia") }}
 {{-   $devTools = concat $devTools (list "gh" "git-credential-libsecret" "git-delta" "git-lfs" "gitui" "glab" "tokei" "uv") }}
 {{-   $editors = concat $editors (list "code" "helix") }}
-{{-   $terminalTools = concat $terminalTools (list "atuin" "carapace-bin" "direnv" "eza" "fd" "ghostty" "gpaste" "just" "kitty" "lnav" "nushell" "rio" "sheldon" "starship" "zoxide") }}
-{{-   $uiTools := list "flatpak" "gnome-shell-extension-blur-my-shell" "gnome-shell-extension-just-perfection" "gnome-shell-extension-pop-shell" "gnome-shell-theme-yaru" "gnome-shell-extension-user-theme" "quickshell" "ulauncher" }}
-{{-   $systemTools = concat $systemTools (list "age" "bottom" "brightnessctl" "cava" "cliphist" "conserver" "duf" "gammastep" "jc" "matugen" "procs" "tealdeer" "vivid") }}
-{{-   $excludeGroups := list "firefox" "libreoffice" }}
+{{-   $terminalTools = concat $terminalTools (list "atuin" "carapace-bin" "direnv" "eza" "fastfetch" "fd" "ghostty" "gpaste" "just" "kitty" "lnav" "nushell" "rio" "sheldon" "starship" "zoxide") }}
+{{-   $uiTools := list "flatpak" "matugen" "niri" "qt6-qtmultimedia" "qt6-qtsvg" "qt6-qtvirtualkeyboard" "quickshell" "sddm" "vicinae" -}}
+{{-   $systemTools = concat $systemTools (list "age" "bottom" "brightnessctl" "cava" "cliphist" "conserver" "duf" "fcitx5-rime" "gammastep" "lxqt-policykit" "matugen" "procs" "tealdeer" "udiskie" "vivid") -}}
 {{-   $allPackages := concat $devTools $editors $terminalTools $uiTools $systemTools }}
 
 echo "Installing package groups…"
 sudo dnf group install -y -q --nogpgcheck --skip-broken{{ range $rpmGroups }} "{{ . }}"{{- end }}
-
-echo "Removing unwanted groups…"
-sudo dnf group remove -y -q{{ range $excludeGroups }} "{{ . }}"{{- end }} || true
 
 echo "Installing individual packages…"
 sudo dnf install -y -q --nogpgcheck --skip-broken{{ range $allPackages }} {{ . }}{{- end }}

@@ -23,6 +23,3 @@ go
 
 # Legacy cache/data directories (now in ~/.cache/ or ~/.local/share/)
 .npm
-
-# Legacy Bitwarden CLI directory (now in XDG directories)
-.config/Bitwarden CLI

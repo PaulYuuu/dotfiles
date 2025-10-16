@@ -12,5 +12,8 @@ indent_size = 2
 trim_trailing_whitespace = false
 indent_size = unset
 
+[*.css]
+indent_size = unset
+
 [{Makefile, Justfile}]
 indent_style = tab

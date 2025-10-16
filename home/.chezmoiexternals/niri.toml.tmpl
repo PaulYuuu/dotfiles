@@ -1,0 +1,39 @@
+{{- if and (eq .chezmoi.os "linux") (not .isEphemeral) -}}
+[".local/bin/dms"]
+    type = "file"
+    url = {{ gitHubLatestReleaseAssetURL "AvengeMedia/danklinux" (printf "dms-%s.gz" .chezmoi.arch) | quote }}
+    executable = true
+    decompress = "gzip"
+
+[".local/bin/dgop"]
+    type = "file"
+    url = {{ gitHubLatestReleaseAssetURL "AvengeMedia/dgop" (printf "dgop-linux-%s.gz" .chezmoi.arch) | quote }}
+    executable = true
+    decompress = "gzip"
+
+[".local/share/fcitx5/themes/Nord-Dark"]
+    type = "archive"
+    url = "https://github.com/tonyfettes/fcitx5-nord/archive/refs/heads/master.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/Nord-Dark/**"]
+
+[".local/share/fcitx5/themes/Nord-Light"]
+    type = "archive"
+    url = "https://github.com/tonyfettes/fcitx5-nord/archive/refs/heads/master.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/Nord-Light/**"]
+
+[".local/share/fcitx5/rime"]
+    type = "archive"
+    url = "https://github.com/iDvel/rime-ice/archive/refs/heads/main.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "720h"
+
+[".config/quickshell/dms"]
+    type = "git-repo"
+    url = "https://github.com/AvengeMedia/DankMaterialShell.git"
+    refreshPeriod = "168h"
+{{- end }}
