@@ -1,0 +1,9 @@
+terminal:
+  rio:
+    shell:
+      darwin: "/opt/homebrew/bin/nu"
+      linux: "/usr/bin/nu"
+  kitty:
+    hideWindowDecorations:
+      darwin: "titlebar-only"
+      linux: "yes"
