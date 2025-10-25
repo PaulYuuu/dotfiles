@@ -1,0 +1,10 @@
+# AI
+CLAUDE.md
+GEMINI.md
+
+# Editor
+.idea/
+.vscode/
+*~
+*.swo
+*.swp
