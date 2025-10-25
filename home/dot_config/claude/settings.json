@@ -1,0 +1,51 @@
+{
+  "alwaysThinkingEnabled": true,
+  "env": {
+    "DISABLE_AUTOUPDATER": "1",
+    "USE_BUILTIN_RIPGREP": "0"
+  },
+  "includeCoAuthoredBy": false,
+  "enabledPlugins": {
+    "document-skills@anthropic-agent-skills": true,
+    "code-documentation@claude-code-workflows": true,
+    "debugging-toolkit@claude-code-workflows": true,
+    "git-pr-workflows@claude-code-workflows": true,
+    "backend-development@claude-code-workflows": true,
+    "full-stack-orchestration@claude-code-workflows": true,
+    "code-review-ai@claude-code-workflows": true,
+    "code-refactoring@claude-code-workflows": true,
+    "dependency-management@claude-code-workflows": true,
+    "context-management@claude-code-workflows": true,
+    "error-diagnostics@claude-code-workflows": true,
+    "comprehensive-review@claude-code-workflows": true,
+    "security-scanning@claude-code-workflows": true,
+    "documentation-generation@claude-code-workflows": true,
+    "python-development@claude-code-workflows": true,
+    "systems-programming@claude-code-workflows": true,
+    "shell-scripting@claude-code-workflows": true
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:*)",
+      "Read(**)",
+      "Glob(**)",
+      "Bash(gh api:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh status:*)",
+      "Bash(git branch:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git status:*)",
+      "Bash(git remote:*)",
+      "Bash(ls:*)",
+      "Bash(pwd:*)",
+      "Bash(which:*)"
+    ]
+  }
+}

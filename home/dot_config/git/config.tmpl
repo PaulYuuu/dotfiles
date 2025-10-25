@@ -1,0 +1,43 @@
+[blame]
+  coloring = highlightRecent
+[credential]
+  helper = {{ index .git.credential .chezmoi.os }}
+[color]
+  ui = true
+[commit]
+  gpgsign = true
+[core]
+  autocrlf = input
+  editor = nvim
+  filemode = false
+  ignorecase = false
+  pager = delta
+[delta]
+  navigate = true
+  syntax-theme = Nord
+  side-by-side = true
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  allowedSignersFile = {{ ternary "~/.ssh/personal.pub" "~/.ssh/work.pub" .isPersonal }}
+[help]
+  autocorrect = 1
+[init]
+  defaultBranch = main
+[interactive]
+  diffFilter = delta --color-only
+[merge]
+  conflictStyle = zdiff3
+[pager]
+  blame = delta
+[push]
+  autoSetupRemote = true
+[user]
+  name = "Yihuang Yu"
+  email = {{ (ternary .user.personal.email .user.work.email .isPersonal) | quote }}
+  signingkey = {{ ternary "~/.ssh/personal.pub" "~/.ssh/work.pub" .isPersonal }}
