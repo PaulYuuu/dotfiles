@@ -1,0 +1,70 @@
+#!/bin/bash
+
+set -euo pipefail
+
+{{ if not .isEphemeral }}
+gum log --level warn --level.foreground "{{ .visual.nord.nord13 }}" "Nix configuration is only supported on ephemeral systems. Skipping"
+exit 0
+{{ end }}
+
+if [ ! -d "/run/systemd/system" ]; then
+  gum log --level warn --level.foreground "{{ .visual.nord.nord13 }}" "systemd not detected. Skipping Nix configuration"
+  exit 0
+fi
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Starting Nix setup"
+
+if command -v nix &>/dev/null; then
+  gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Nix is already installed. Skipping installation"
+else
+  gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Nix not found. Installing Nix in multi-user mode"
+
+  if gum spin --spinner points --title "Installing Nix..." -- \
+    sh <(curl -sL https://nixos.org/nix/install) --daemon --yes --nix-extra-conf-file "{{ .chezmoi.homeDir }}"/.config/nix/nix.conf; then
+    gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Nix installed successfully"
+
+    sudo systemctl enable --now nix-daemon.service
+    gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "nix-daemon service enabled and started"
+  else
+    gum log --level error --level.foreground "{{ .visual.nord.nord11 }}" "Nix installation failed"
+    exit 1
+  fi
+fi
+
+if [ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+  . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+  gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Sourced nix-daemon profile"
+else
+  gum log --level warn --level.foreground "{{ .visual.nord.nord13 }}" "Could not find nix-daemon.sh to source. A new shell may be required for nix commands to work"
+fi
+
+PROFILE_NAME="ephemeral"
+FLAKE_PATH="{{ .chezmoi.homeDir }}/.config/nix/$PROFILE_NAME"
+
+if [ -d "$FLAKE_PATH" ]; then
+  gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Found Nix configuration at $FLAKE_PATH. Managing profile '$PROFILE_NAME'"
+
+  if nix profile list | grep -qw "$PROFILE_NAME"; then
+    gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Upgrading nix profile '$PROFILE_NAME'"
+
+    if gum spin --spinner points --title "Upgrading Nix profile '$PROFILE_NAME'" -- \
+      nix profile upgrade "$PROFILE_NAME"; then
+      gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Nix profile '$PROFILE_NAME' upgraded successfully"
+    else
+      gum log --level error --level.foreground "{{ .visual.nord.nord11 }}" "Failed to upgrade Nix profile '$PROFILE_NAME'"
+    fi
+  else
+    gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Adding nix profile '$PROFILE_NAME'"
+
+    if gum spin --spinner points --title "Adding Nix profile..." -- \
+      nix profile add "$FLAKE_PATH"; then
+      gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Nix profile added successfully"
+    else
+      gum log --level error --level.foreground "{{ .visual.nord.nord11 }}" "Failed to add Nix profile"
+    fi
+  fi
+else
+  gum log --level warn --level.foreground "{{ .visual.nord.nord13 }}" "Nix configuration not found at $FLAKE_PATH. Skipping profile management"
+fi
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Nix setup finished"

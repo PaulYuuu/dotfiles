@@ -1,0 +1,25 @@
+# Legacy Zsh files (now in ~/.config/zsh and ~/.local/state/zsh)
+.zshrc
+.zsh_history
+.zprofile
+.zcompdump*
+.zcompcache
+
+# Legacy language toolchain directories (now in XDG directories)
+.cargo
+.rustup
+go
+
+# Legacy config files (now in ~/.config/)
+.npmrc
+.inputrc
+.gitconfig
+.gitignore_global
+.gitignore
+
+# Legacy history files (now in ~/.local/state/ or disabled)
+.python_history
+.lesshst
+
+# Legacy cache/data directories (now in ~/.cache/ or ~/.local/share/)
+.npm
