@@ -1,0 +1,34 @@
+name: Test dotfiles
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testChezmoi:
+    name: CentOS Stream 10 (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    if: |
+      github.event_name != 'pull_request' ||
+      (github.event.pull_request.user.login != 'pre-commit-ci[bot]' &&
+        github.event.pull_request.user.login != 'dependabot[bot]')
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-latest
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Run tests
+        uses: ./
