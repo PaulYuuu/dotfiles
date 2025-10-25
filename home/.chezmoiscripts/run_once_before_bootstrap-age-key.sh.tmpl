@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -euo pipefail
+
+readonly AGE_KEY_PATH="${HOME}/.ssh/age"
+
+if [ -f "${AGE_KEY_PATH}" ] && [ -s "${AGE_KEY_PATH}" ]; then
+    gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Age key already exists"
+    exit 0
+fi
+
+if ! command -v age >/dev/null 2>&1; then
+    gum log --level error --level.foreground "{{ .visual.nord.nord11 }}" "'age' not found in PATH. Please install it first"
+    exit 1
+fi
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Saving age key to ${AGE_KEY_PATH}"
+
+install -D -m 600 <(cat <<'EOF'
+{{ (bitwarden "item" "age-ssh").sshKey.privateKey | trim }}
+EOF
+) "${AGE_KEY_PATH}"
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Age key configured"

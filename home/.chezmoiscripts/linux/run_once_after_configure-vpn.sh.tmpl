@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Configuring VPN permissions"
+
+gum spin --spinner points --title "Creating polkit rules for NetworkManager" -- \
+  sudo tee /etc/polkit-1/rules.d/49-nmcli.rules >/dev/null <<'EOF'
+polkit.addRule(function(action, subject) {
+    if (action.id.indexOf("org.freedesktop.NetworkManager.") == 0 &&
+        subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "VPN permissions configured successfully"

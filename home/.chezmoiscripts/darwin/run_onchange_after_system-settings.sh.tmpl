@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+gum log --level warn --level.foreground "{{ .visual.nord.nord13 }}" "Applying system settings, sudo password required"
+sudo -v
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Setting power management options"
+
+sudo pmset -a displaysleep 30
+sudo pmset -c sleep 0
+sudo pmset -a autorestart 1
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "System setting complete"
