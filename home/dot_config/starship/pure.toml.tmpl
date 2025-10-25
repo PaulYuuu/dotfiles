@@ -1,0 +1,160 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$hostname\
+$username\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$fill\
+$c\
+$cmake\
+$golang\
+$java\
+$lua\
+$nodejs\
+$perl\
+$python\
+$ruby\
+$rust\
+$swift\
+$zig\
+$package\
+$line_break\
+$character
+"""
+
+palette = "nord"
+
+[palettes.nord]
+nord00 = "{{ .visual.nord.nord0 }}"
+nord01 = "{{ .visual.nord.nord1 }}"
+nord02 = "{{ .visual.nord.nord2 }}"
+nord03 = "{{ .visual.nord.nord3 }}"
+nord04 = "{{ .visual.nord.nord4 }}"
+nord05 = "{{ .visual.nord.nord5 }}"
+nord06 = "{{ .visual.nord.nord6 }}"
+nord07 = "{{ .visual.nord.nord7 }}"
+nord08 = "{{ .visual.nord.nord8 }}"
+nord09 = "{{ .visual.nord.nord9 }}"
+nord10 = "{{ .visual.nord.nord10 }}"
+nord11 = "{{ .visual.nord.nord11 }}"
+nord12 = "{{ .visual.nord.nord12 }}"
+nord13 = "{{ .visual.nord.nord13 }}"
+nord14 = "{{ .visual.nord.nord14 }}"
+nord15 = "{{ .visual.nord.nord15 }}"
+
+[hostname]
+ssh_symbol = ""
+style = "bold nord14"
+format = "[$ssh_symbol $hostname ]($style)"
+
+[username]
+style_root = "bold nord11"
+style_user = "bold nord13"
+format = "[$user ]($style)"
+show_always = false
+
+[username.aliases]
+yvanyo = "YvanYo"
+yihyu = "Yihuang"
+
+[directory]
+style = "nord09"
+read_only = "⊗"
+read_only_style = "nord11"
+
+[git_branch]
+symbol = ""
+format = "[$branch]($style)"
+style = "nord03"
+
+[git_state]
+style = "dimmed nord13"
+format = '[\($state( $progress_current/$progress_total)\) ]($style)'
+
+[git_status]
+style = "nord08"
+format = "[[(*$untracked) ](nord02)($ahead_behind) ]($style)"
+ahead = "↑"
+behind = "↓"
+untracked = "?"
+
+[cmd_duration]
+style = "bold nord13"
+format = "[$duration]($style)"
+
+[fill]
+symbol = " "
+
+[c]
+symbol = ""
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[cmake]
+symbol = ""
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[golang]
+symbol = ""
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[java]
+symbol = "󰬷"
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[lua]
+symbol = "󰢱"
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[nodejs]
+symbol = "󰎙"
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[perl]
+symbol = ""
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[python]
+symbol = "󰌠"
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[ruby]
+symbol = "󰴭"
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[rust]
+symbol = "󱘗"
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[swift]
+symbol = "󰛥"
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[zig]
+symbol = ""
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[package]
+symbol = ""
+style = "nord07"
+format = "[ $symbol]($style)"
+
+[character]
+success_symbol = "[❯](nord15)"
+error_symbol = "[❯](nord11)"
+vimcmd_symbol = "[❮](nord14)"

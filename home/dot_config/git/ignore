@@ -1,0 +1,74 @@
+# macOS
+.DS_Store
+.Trash
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.tmp
+*.bak
+.settings/
+.loadpath
+.tern-project
+.scala_dependencies
+
+# Python
+__pycache__/
+*.py[cod]
+build/
+dist/
+sdist/
+*.egg-info/
+uv.lock
+.coverage
+.venv
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Logs
+logs
+*.log
+
+# dotenv environment variables file
+.env
+
+# Cloud
+.gcloudignore
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+.netrc
+.credentials
+
+# Backup files
+*.backup
+*.back
+*.bak
+*.orig
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Cache files
+.cache/
+*.cache
+
+# AI
+.claude/
+.gemini/
