@@ -1,0 +1,23 @@
+{
+    "workbench.preferredDarkColorTheme": "Nord",
+    "workbench.preferredLightColorTheme": "Nord Light",
+    "window.systemColorTheme": "auto",
+    "window.autoDetectColorScheme": true,
+    "editor.fontSize": 18,
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay",
+    "editor.fontFamily": "iMWritingMono Nerd Font Mono",
+    "editor.mouseWheelZoom": true,
+    "editor.formatOnPaste": true,
+    "editor.autoIndentOnPaste": true,
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.trimWhitespaceOnDelete": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "screencastMode.fontSize": 54,
+    "update.showReleaseNotes": false,
+    "better-comments.highlightPlainText": true,
+    "workbench.productIconTheme": "icons-carbon",
+    "workbench.iconTheme": "material-icon-theme",
+    "gitlens.gitKraken.enabled": false
+}
