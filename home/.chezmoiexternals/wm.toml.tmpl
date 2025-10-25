@@ -1,0 +1,21 @@
+{{- if and (eq .chezmoi.os "linux") (not .isEphemeral) -}}
+[".local/share/fcitx5/themes/Nord-Dark"]
+    type = "archive"
+    url = "https://github.com/tonyfettes/fcitx5-nord/archive/refs/heads/master.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/Nord-Dark/**"]
+
+[".local/share/fcitx5/themes/Nord-Light"]
+    type = "archive"
+    url = "https://github.com/tonyfettes/fcitx5-nord/archive/refs/heads/master.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/Nord-Light/**"]
+
+[".local/share/fcitx5/rime"]
+    type = "git-repo"
+    url = "https://github.com/iDvel/rime-ice.git"
+    refreshPeriod = "720h"
+    clone.args = ["--depth", "1"]
+{{- end }}
