@@ -1,0 +1,73 @@
+# vim:ft=kitty
+## name: Nord
+## author: Eric N. Vander Weele
+## upstream: https://www.nordtheme.com/
+## blurb: Nord theme utilizing the full Frost and Aurora palette.
+
+# Basic colors
+foreground           {{ .visual.nord.nord4 }}
+background           {{ .visual.nord.nord0 }}
+selection_foreground {{ .visual.nord.nord4 }}
+selection_background {{ .visual.nord.nord2 }}
+
+# Cursor colors
+cursor            {{ .visual.nord.nord4 }}
+cursor_text_color {{ .visual.nord.nord1 }}
+
+# URL underline color when hovering with mouse
+url_color {{ .visual.nord.nord10 }}
+
+# Window border colors and terminal bell colors
+active_border_color   {{ .visual.nord.nord9 }}
+inactive_border_color {{ .visual.nord.nord3 }}
+bell_border_color     {{ .visual.nord.nord8 }}
+visual_bell_color     none
+
+# Tab bar colors
+active_tab_foreground   {{ .visual.nord.nord1 }}
+active_tab_background   {{ .visual.nord.nord8 }}
+inactive_tab_foreground {{ .visual.nord.nord5 }}
+inactive_tab_background {{ .visual.nord.nord3 }}
+tab_bar_background      {{ .visual.nord.nord1 }}
+tab_bar_margin_color    none
+
+# Mark colors (marked text in the terminal)
+mark1_foreground {{ .visual.nord.nord1 }}
+mark1_background {{ .visual.nord.nord8 }}
+mark2_foreground {{ .visual.nord.nord1 }}
+mark2_background {{ .visual.nord.nord11 }}
+mark3_foreground {{ .visual.nord.nord1 }}
+mark3_background {{ .visual.nord.nord13 }}
+
+# The basic 16 colors
+# black
+color0 {{ .visual.nord.nord1 }}
+color8 {{ .visual.nord.nord3 }}
+
+# red
+color1 {{ .visual.nord.nord11 }}
+color9 {{ .visual.nord.nord11 }}
+
+# green
+color2  {{ .visual.nord.nord14 }}
+color10 {{ .visual.nord.nord14 }}
+
+# yellow
+color3  {{ .visual.nord.nord13 }}
+color11 {{ .visual.nord.nord12 }}
+
+# blue
+color4  {{ .visual.nord.nord9 }}
+color12 {{ .visual.nord.nord10 }}
+
+# magenta
+color5  {{ .visual.nord.nord15 }}
+color13 {{ .visual.nord.nord15 }}
+
+# cyan
+color6  {{ .visual.nord.nord8 }}
+color14 {{ .visual.nord.nord7 }}
+
+# white
+color7  {{ .visual.nord.nord5 }}
+color15 {{ .visual.nord.nord6 }}
