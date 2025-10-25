@@ -1,0 +1,43 @@
+{{ $extensions := list
+    "aaron-bond.better-comments"
+    "arcticicestudio.nord-visual-studio-code"
+    "eamodio.gitlens"
+    "editorconfig.editorconfig"
+    "fill-labs.dependi"
+    "github.remotehub"
+    "huytd.nord-light"
+    "ms-python.debugpy"
+    "ms-python.python"
+    "ms-python.vscode-pylance"
+    "ms-vscode.makefile-tools"
+    "ms-vscode-remote.remote-containers"
+    "ms-vscode-remote.remote-ssh"
+    "ms-vscode-remote.remote-ssh-edit"
+    "ms-vscode.remote-explorer"
+    "ms-vscode.remote-repositories"
+    "ms-vscode.remote-server"
+    "njpwerner.autodocstring"
+    "oderwat.indent-rainbow"
+    "pkief.material-icon-theme"
+    "redhat.vscode-yaml"
+    "rust-lang.rust-analyzer"
+    "tamasfe.even-better-toml"
+    "tekumara.typos-vscode"
+    "usernamehw.errorlens"
+    "vadimcn.vscode-lldb"
+    "wayou.vscode-todo-highlight"
+    "yzhang.markdown-all-in-one"
+-}}
+
+#!/bin/bash
+set -eufo pipefail
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Installing VS Code extensions"
+
+gum spin --spinner points --title "Installing extensions" -- \
+  code --force \
+{{- range $extensions }}
+  --install-extension {{ . }} \
+{{- end }}
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "VS Code extensions installed"

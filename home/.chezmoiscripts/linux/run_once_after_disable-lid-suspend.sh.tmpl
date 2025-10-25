@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Configuring lid switch behavior"
+
+gum spin --spinner points --title "Creating logind configuration directory" -- \
+  sudo mkdir -p /etc/systemd/logind.conf.d
+
+gum spin --spinner points --title "Writing lid switch configuration" -- \
+  sudo tee /etc/systemd/logind.conf.d/99-lid-suspend.conf >/dev/null <<'EOF'
+[Login]
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+LidSwitchIgnoreInhibited=yes
+EOF
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Restarting systemd-logind"
+sudo systemctl restart systemd-logind
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Lid suspend disabled successfully"

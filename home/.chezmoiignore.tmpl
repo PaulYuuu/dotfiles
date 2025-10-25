@@ -1,0 +1,47 @@
+{{- if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/**
+.config/homebrew/**
+.hushlogin
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+.config/DankMaterialShell/**
+.config/fcitx5/**
+.config/gtk-3.0/**
+.config/gtk-4.0/**
+.config/niri/**
+.config/nix/**
+.config/vicinae/**
+{{- end }}
+
+{{- if .isEphemeral }}
+.chezmoiscripts/**
+!.chezmoiscripts/linux/configure-nix.sh
+!.chezmoiscripts/linux/install-packages.sh
+!.chezmoiscripts/linux/setup-shell.sh
+
+.config/*
+!.config/atuin/
+!.config/bat/
+!.config/bottom/
+!.config/eza/
+!.config/fastfetch/
+!.config/glow/
+!.config/nix/
+!.config/npm/
+!.config/ripgrep/
+!.config/sheldon/
+!.config/starship/
+!.config/zsh/
+.config/zsh/conf.d/98_bitwarden.zsh
+.config/zsh/conf.d/99_private.zsh
+
+.ssh/*
+!.ssh/config
+!.ssh/config.d/
+.ssh/config.d/*
+!.ssh/config.d/global
+
+Pictures/*
+{{- end }}

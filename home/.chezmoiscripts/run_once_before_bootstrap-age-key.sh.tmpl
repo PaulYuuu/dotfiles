@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -euo pipefail
+
+readonly AGE_KEY_PATH="${HOME}/.config/age/key.txt"
+
+if [ -f "${AGE_KEY_PATH}" ] && [ -s "${AGE_KEY_PATH}" ]; then
+    gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Age key already exists"
+    exit 0
+fi
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Saving age key to ${AGE_KEY_PATH}"
+
+install -D -m 600 <(cat <<'EOF'
+{{ (rbwFields "age-ssh").privateAge.value | trim }}
+EOF
+) "${AGE_KEY_PATH}"
+
+gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "Age key configured"
