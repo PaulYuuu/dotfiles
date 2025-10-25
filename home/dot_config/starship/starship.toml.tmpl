@@ -1,0 +1,347 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+[ ](nord11)\
+$os\
+$hostname\
+[ ](fg:nord11 bg:nord12)\
+$username\
+[ ](fg:nord12 bg:nord13)\
+$directory\
+[ ](fg:nord13 bg:nord14)\
+$git_branch\
+$git_status\
+$git_state\
+[ ](fg:nord14 bg:nord07)\
+$c\
+$cmake\
+$crystal\
+${custom.ansible}\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$perl\
+$python\
+$rlang\
+$ruby\
+$rust\
+$scala\
+$swift\
+$zig\
+$package\
+[ ](fg:nord07 bg:nord09)\
+$conda\
+$container\
+$direnv\
+$meson\
+$mise\
+[ ](fg:nord09 bg:nord15)\
+$status\
+$cmd_duration\
+[ ](nord15)
+"""
+
+command_timeout = 9000
+continuation_prompt = "    "
+palette = "nord"
+scan_timeout = 300
+
+[palettes.nord]
+nord00 = "{{ .visual.nord.nord0 }}"
+nord01 = "{{ .visual.nord.nord1 }}"
+nord02 = "{{ .visual.nord.nord2 }}"
+nord03 = "{{ .visual.nord.nord3 }}"
+nord04 = "{{ .visual.nord.nord4 }}"
+nord05 = "{{ .visual.nord.nord5 }}"
+nord06 = "{{ .visual.nord.nord6 }}"
+nord07 = "{{ .visual.nord.nord7 }}"
+nord08 = "{{ .visual.nord.nord8 }}"
+nord09 = "{{ .visual.nord.nord9 }}"
+nord10 = "{{ .visual.nord.nord10 }}"
+nord11 = "{{ .visual.nord.nord11 }}"
+nord12 = "{{ .visual.nord.nord12 }}"
+nord13 = "{{ .visual.nord.nord13 }}"
+nord14 = "{{ .visual.nord.nord14 }}"
+nord15 = "{{ .visual.nord.nord15 }}"
+
+# Tier1
+[os]
+disabled = false
+format = "[$symbol ]($style)"
+style = "bg:nord11 fg:nord06"
+
+[os.symbols]
+Arch = ""
+CentOS = ""
+Debian = ""
+Fedora = ""
+Linux = ""
+Macos = ""
+NixOS = ""
+Raspbian = ""
+Redhat = ""
+Ubuntu = ""
+Windows = ""
+
+[hostname]
+format = '[$ssh_symbol ]($style)'
+ssh_only = true
+ssh_symbol = "󰣀"
+style = "bg:nord11 fg:nord06"
+
+# Tier2
+[username]
+format = "[󱁆 ${user} ](italic $style)"
+show_always = true
+style_root = "bg:nord12 fg:nord13"
+style_user = "bg:nord12 fg:nord06"
+
+[username.aliases]
+yihyu = "Yihuang"
+yvanyo = "YvanYo"
+
+# Tier3
+[directory]
+before_repo_root_style = "bg:nord13 fg:nord06"
+format = "[ $path [($read_only )]($read_only_style)]($style)"
+read_only = "󰌾"
+read_only_style = "blink bg:nord13 fg:nord11"
+repo_root_format = "[ [$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)$path [($read_only )]($read_only_style)]($style)"
+repo_root_style = "italic bold bg:nord13 fg:nord06"
+style = "bg:nord13 fg:nord06"
+truncation_length = 3
+
+# Tier4
+[git_branch]
+format = "[$symbol $branch ]($style)"
+style = "bg:nord14 fg:nord06 italic"
+symbol = ""
+
+[git_status]
+ahead = ""
+behind = ""
+conflicted = ""
+deleted = ""
+disabled = false
+diverged = ""
+format = "[($all_status$ahead_behind )]($style)"
+modified = ""
+renamed = ""
+staged = ""
+stashed = ""
+style = "bg:nord14 fg:nord06"
+untracked = ""
+
+[git_state]
+format = "[$state( $progress_current/$progress_total) ]($style)"
+style = "bg:nord14 fg:nord06"
+
+# Tier5
+[c]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[cmake]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[crystal]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[custom.ansible]
+command = "ansible --version | awk -F '[] []+' 'NR==1{print $3}'"
+detect_files = ["site.yml"]
+detect_folders = ["roles"]
+format = "[$symbol( $output) ]($style)"
+require_repo = true
+style = "bg:nord07 fg:nord06"
+symbol = "󱂚"
+
+[dart]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[dotnet]
+format = "[$symbol( $version) ]($style)"
+heuristic = true
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[elixir]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[elm]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[erlang]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[golang]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[haskell]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[java]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󰬷"
+version_format = "${raw}"
+
+[julia]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[kotlin]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󱈙"
+version_format = "${raw}"
+
+[lua]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󰢱"
+version_format = "${raw}"
+
+[nim]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[nodejs]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󰎙"
+version_format = "${raw}"
+
+[package]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[perl]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[python]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󰌠"
+version_format = "${raw}"
+
+[ruby]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󰴭"
+version_format = "${raw}"
+
+[rust]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󱘗"
+version_format = "${raw}"
+
+[scala]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+[swift]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = "󰛥"
+version_format = "${raw}"
+
+[zig]
+format = "[$symbol( $version) ]($style)"
+style = "bg:nord07 fg:nord06"
+symbol = ""
+version_format = "${raw}"
+
+# Tier6
+[conda]
+format = "[$symbol( $environment) ]($style)"
+ignore_base = true
+style = "bg:nord09 fg:nord06"
+symbol = ""
+truncation_length = 0
+
+[container]
+format = "[$symbol( $environment) ]($style)"
+style = "bg:nord09 fg:nord06"
+symbol = ""
+
+[direnv]
+disabled = false
+format = "[$symbol( $loaded/$allowed) ]($style)"
+style = "bg:nord09 fg:nord06"
+symbol = ""
+
+[meson]
+format = "[$symbol $project ]($style)"
+style = "bg:nord09 fg:nord06"
+symbol = "󰳆"
+truncation_symbol = ""
+
+[mise]
+format = "[$symbol ]($style)"
+style = "bg:nord09 fg:nord06"
+symbol = ""
+
+# Tier7
+[cmd_duration]
+format = '[$duration ]($style)'
+min_time = 3000
+style = "bg:nord15 fg:nord13 bold"
+
+[status]
+disabled = false
+failure_style = "bg:nord15 fg:nord11 bold"
+format = "[$symbol $status ]($style)"
+success_style = "bg:nord15 fg:nord14 bold"
+success_symbol = '[](bg:nord15 fg:nord14)'
+symbol = '[](bg:nord15 fg:nord11)'
