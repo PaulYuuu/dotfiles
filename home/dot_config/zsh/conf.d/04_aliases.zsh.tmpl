@@ -1,0 +1,40 @@
+(( $+commands[bat] )) && alias cat="bat -pp"
+
+if (( $+commands[eza] )); then
+  alias ls="eza"
+  alias ll="ls -lh"
+  alias la="ls -a"
+  alias lla="ls -alh"
+  alias tree="ls --tree"
+fi
+(( $+commands[nvim] )) && alias vim="nvim"
+
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias reload='source ${ZDOTDIR}/.zshrc'
+
+# Gum wrappers with Nord colors
+if (( $+commands[gum] )); then
+  debug() {
+    gum log --level debug --level.foreground "{{ .visual.nord.nord8 }}" "$@"
+  }
+
+  info() {
+    gum log --level info --level.foreground "{{ .visual.nord.nord14 }}" "$@"
+  }
+
+  warn() {
+    gum log --level warn --level.foreground "{{ .visual.nord.nord13 }}" "$@"
+  }
+
+  error() {
+    gum log --level error --level.foreground "{{ .visual.nord.nord11 }}" "$@"
+  }
+fi

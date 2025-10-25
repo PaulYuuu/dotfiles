@@ -1,0 +1,47 @@
+# Import standard library path utilities
+use std/util "path add"
+
+{{- if eq .chezmoi.os "darwin" }}
+
+# Initialize homebrew environment (highest priority)
+path add "/opt/homebrew/bin"
+{{- end }}
+
+# Editors
+$env.EDITOR = "nvim"
+$env.VISUAL = $env.EDITOR
+$env.GIT_EDITOR = $env.EDITOR
+
+# History / App configs
+$env.BITWARDENCLI_APPDATA_DIR = ($env.XDG_CONFIG_HOME | path join "bitwarden")
+$env.CLAUDE_CONFIG_DIR = ($env.XDG_CONFIG_HOME | path join "claude")
+$env.LESSHISTFILE = "-"
+$env.PYTHON_HISTORY = ($env.XDG_STATE_HOME | path join "python" "history")
+$env.TART_HOME = ($env.XDG_DATA_HOME | path join "tart")
+$env.TLRC_CONFIG = ($env.XDG_CONFIG_HOME | path join "tlrc" "config.toml")
+$env.INPUTRC = ($env.XDG_CONFIG_HOME | path join "readline" "inputrc")
+$env.RUFF_CACHE_DIR = ($env.XDG_CACHE_HOME | path join "ruff")
+$env.RIPGREP_CONFIG_PATH = ($env.XDG_CONFIG_HOME | path join "ripgrep" "config")
+
+# Cargo
+$env.CARGO_HOME = ($env.XDG_DATA_HOME | path join "cargo")
+path add ($env.CARGO_HOME | path join "bin")
+
+# Go
+$env.GOPATH = ($env.XDG_DATA_HOME | path join "go")
+$env.GOMODCACHE = ($env.XDG_CACHE_HOME | path join "go" "mod")
+path add ($env.GOPATH | path join "bin")
+
+# Npm
+$env.NPM_CONFIG_USERCONFIG = ($env.XDG_CONFIG_HOME | path join "npm" "npmrc")
+path add ($env.XDG_DATA_HOME | path join "npm" "bin")
+
+# SSH agent
+{{- if eq .chezmoi.os "darwin" }}
+$env.SSH_AUTH_SOCK = ($env.TMPDIR | path join $"rbw-$(id -u)" "ssh-agent-socket")
+{{- else if eq .chezmoi.os "linux" }}
+$env.SSH_AUTH_SOCK = ($env.XDG_RUNTIME_DIR | path join "rbw" "ssh-agent-socket")
+{{- end }}
+
+# User executables
+path add $env.XDG_BIN_HOME

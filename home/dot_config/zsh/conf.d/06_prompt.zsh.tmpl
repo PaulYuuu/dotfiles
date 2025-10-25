@@ -1,0 +1,12 @@
+if [[ "$TERM_PROGRAM" == "zed" ]]; then
+  # Use a specific config for the Zed editor's terminal
+  export STARSHIP_CONFIG=~/.config/starship/pure.toml
+else
+  # Use the default config for all other terminals
+  export STARSHIP_CONFIG=~/.config/starship/{{ ternary "pure.toml" "starship.toml" .isEphemeral }}
+fi
+
+eval "$(starship init zsh)"
+
+# Vivid nord theme for ls colors
+(( $+commands[vivid] )) && export LS_COLORS="$(vivid generate nord)"
