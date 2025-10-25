@@ -1,0 +1,28 @@
+{{- $isEphemeral := false -}}
+{{- $isPersonal := false -}}
+
+{{- if (and (eq .chezmoi.os "linux") (ne .chezmoi.osRelease.id "fedora")) -}}
+{{-   $isEphemeral = true -}}
+{{- end -}}
+
+{{- if not $isEphemeral -}}
+{{-   if eq .chezmoi.username "yvanyo" -}}
+{{-     $isPersonal = true -}}
+{{-   end -}}
+{{- end -}}
+
+encryption = "age"
+
+{{ if not $isEphemeral -}}
+[age]
+    identity = "~/.config/age/key.txt"
+    symmetric = true
+
+{{ end -}}
+
+[data]
+    isEphemeral = {{ $isEphemeral }}
+    isPersonal = {{ $isPersonal }}
+
+[docker]
+    command = "podman"
