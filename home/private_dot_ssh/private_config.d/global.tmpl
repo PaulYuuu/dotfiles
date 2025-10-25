@@ -1,0 +1,10 @@
+Host *
+    AddKeysToAgent yes
+    HostKeyAlgorithms ssh-ed25519
+    IdentitiesOnly yes
+    IdentityFile ~/.ssh/id_ed25519
+    PubkeyAcceptedAlgorithms ssh-ed25519
+    StrictHostKeyChecking accept-new
+{{- if eq .chezmoi.os "darwin" }}
+    UseKeychain yes
+{{- end }}
