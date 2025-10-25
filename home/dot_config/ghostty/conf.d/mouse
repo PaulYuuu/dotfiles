@@ -1,0 +1,5 @@
+copy-on-select = clipboard
+focus-follows-mouse = true
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 1
+mouse-shift-capture = false

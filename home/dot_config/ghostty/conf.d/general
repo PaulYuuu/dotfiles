@@ -1,0 +1,10 @@
+desktop-notifications = true
+grapheme-width-method = unicode
+link-url = true
+macos-non-native-fullscreen = false
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+macos-window-shadow = false
+shell-integration = detect
+shell-integration-features = true
+theme = Nord

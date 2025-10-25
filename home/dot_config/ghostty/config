@@ -1,0 +1,7 @@
+config-file = conf.d/general
+config-file = conf.d/font
+config-file = conf.d/window
+config-file = conf.d/cursor
+config-file = conf.d/mouse
+config-file = conf.d/clipboard
+config-file = conf.d/keymap
