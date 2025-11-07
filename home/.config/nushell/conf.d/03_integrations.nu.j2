@@ -1,0 +1,41 @@
+# Atuin integration
+if (which atuin | is-not-empty) {
+    atuin init nu --disable-up-arrow | save -f ($nu.data-dir | path join "vendor/autoload/atuin.nu")
+}
+
+# Direnv integration (official Nushell cookbook method)
+if (which direnv | is-not-empty) {
+    $env.config.hooks.pre_prompt = [{ ||
+        if (which direnv | is-empty) {
+            return
+        }
+
+        direnv export json | from json | default {} | load-env
+        if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
+            $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
+        }
+    }]
+}
+
+# Zoxide integration
+if (which zoxide | is-not-empty) {
+    zoxide init nushell --cmd j | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
+}
+
+# Carapace integration
+if (which carapace | is-not-empty) {
+    $env.config.completions.external = {
+        enable: true
+        max_results: 100
+        completer: {|spans: list<string>|
+            carapace $spans.0 nushell ...$spans
+            | from json
+            | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+        }
+    }
+}
+
+# UV integration
+if (which uv | is-not-empty) {
+    uv generate-shell-completion nushell | save -f ($nu.data-dir | path join "vendor/autoload/uv.nu")
+}

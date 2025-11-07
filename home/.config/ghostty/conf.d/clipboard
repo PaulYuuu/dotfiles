@@ -1,0 +1,5 @@
+clipboard-paste-bracketed-safe = true
+clipboard-paste-protection = true
+clipboard-read = allow
+clipboard-trim-trailing-spaces = true
+clipboard-write = allow
