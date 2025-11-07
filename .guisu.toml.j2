@@ -1,0 +1,24 @@
+# Guisu Configuration (with Jinja template support)
+{% set isEphemeral = (system.os == "linux" and system.distro_id != "fedora") %}
+{% set isPersonal = (not isEphemeral and system.username == "yvanyo") %}
+
+[general]
+rootEntry = "home"
+color = true
+progress = true
+
+{% if not isEphemeral %}
+[age]
+identity = "~/.config/age/key.txt"
+derive = true
+{% endif %}
+
+[bitwarden]
+provider = "rbw"
+
+[ui]
+icons = "auto"
+
+[variables]
+isEphemeral = {{ isEphemeral }}
+isPersonal = {{ isPersonal }}

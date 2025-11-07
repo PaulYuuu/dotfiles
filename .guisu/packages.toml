@@ -1,0 +1,5 @@
+[common]
+packages = ["git", "neovim"]
+
+[darwin]
+packages = ["fastfetch"]
