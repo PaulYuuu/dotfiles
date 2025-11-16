@@ -4,6 +4,7 @@ tap "homebrew/cask"
 brew "age"
 brew "atuin", restart_service: :changed
 brew "bat"
+brew "bitwarden-cli"
 brew "bottom"
 brew "carapace"
 brew "chezmoi"
