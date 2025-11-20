@@ -1,0 +1,5 @@
+name = "configure-repo"
+script = "scripts/configure-dotfiles-repo.sh"
+order = 100
+mode = "once"
+failfast = false

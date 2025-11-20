@@ -1,0 +1,5 @@
+name = "age-key"
+script = "scripts/bootstrap-age-key.sh"
+order = 1
+mode = "once"
+failfast = true

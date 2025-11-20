@@ -1,0 +1,21 @@
+#!/bin/bash
+set -eufo pipefail
+
+gum log --level info --level.foreground "{{ visual.nord.nord14 }}" "Configuring dotfiles repository"
+
+gum spin --spinner points --title "Setting git user configuration" -- bash -c "
+  git -C '{{ guisu.workingTree }}' config user.email {{ user.email.personal | quote }}
+  git -C '{{ guisu.workingTree }}' config user.signingkey '~/.ssh/personal.pub'
+  git -C '{{ guisu.workingTree }}' config gpg.ssh.allowedSignersFile '~/.ssh/personal.pub'
+"
+
+current_url=$(git -C "{{ guisu.workingTree }}" remote get-url origin)
+if [[ "$current_url" == https://github.com/* ]]; then
+  ssh_url="${current_url/https:\/\/github.com\//git@github.com:}"
+  gum log --level info --level.foreground "{{ visual.nord.nord14 }}" "Updating remote URL to use SSH"
+  git -C "{{ guisu.workingTree }}" remote set-url origin "$ssh_url"
+else
+  gum log --level info --level.foreground "{{ visual.nord.nord14 }}" "Remote URL already uses SSH"
+fi
+
+gum log --level info --level.foreground "{{ visual.nord.nord14 }}" "Dotfiles repository configured"
