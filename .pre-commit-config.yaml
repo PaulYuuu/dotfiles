@@ -29,17 +29,17 @@ repos:
       - id: shellcheck
         name: Check shell scripts
   - repo: https://github.com/editorconfig-checker/editorconfig-checker
-    rev: v3.4.1
+    rev: v3.6.0
     hooks:
       - id: editorconfig-checker
         name: Check EditorConfig rules
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.28.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
         name: Detect hardcoded secrets
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.39.0
+    rev: v1.40.0
     hooks:
       - id: typos
         name: Detect spelling typos
