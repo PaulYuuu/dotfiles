@@ -14,7 +14,7 @@ repos:
         name: Lint TOML files
         args: ['--no-schema']
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.37.1
+    rev: v1.38.0
     hooks:
       - id: yamllint
         name: Lint YAML files
@@ -29,7 +29,7 @@ repos:
       - id: shellcheck
         name: Check shell scripts
   - repo: https://github.com/editorconfig-checker/editorconfig-checker
-    rev: v3.6.0
+    rev: v3.6.1
     hooks:
       - id: editorconfig-checker
         name: Check EditorConfig rules
@@ -39,14 +39,14 @@ repos:
       - id: gitleaks
         name: Detect hardcoded secrets
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.41.0
+    rev: v1.42.3
     hooks:
       - id: typos
         name: Detect spelling typos
         args: ['--force-exclude']
         exclude: '.age'
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.23.0
+    rev: v9.24.0
     hooks:
       - id: commitlint
         name: Lint commit message
