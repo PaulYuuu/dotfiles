@@ -1,5 +1,2 @@
 [create-once]
-files = [
-  ".config/zsh/conf.d/98_bitwarden.zsh",
-  ".config/nushell/conf.d/98_bitwarden.nu",
-]
+files = []

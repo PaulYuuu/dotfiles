@@ -1,5 +1,4 @@
-# Guisu Configuration (with Jinja template support)
-{% set isEphemeral = (system.os == "linux" and system.distro_id != "fedora") %}
+{% set isEphemeral = (system.os == "linux" and system.distroId != "fedora") %}
 {% set isPersonal = (not isEphemeral and system.username == "yvanyo") %}
 
 [general]

@@ -14,12 +14,12 @@ repos:
         name: Lint TOML files
         args: ['--no-schema']
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.37.1
+    rev: v1.38.0
     hooks:
       - id: yamllint
         name: Lint YAML files
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.12.0-2
+    rev: v3.13.1-1
     hooks:
       - id: shfmt
         name: Format shell scripts
@@ -29,24 +29,24 @@ repos:
       - id: shellcheck
         name: Check shell scripts
   - repo: https://github.com/editorconfig-checker/editorconfig-checker
-    rev: v3.4.1
+    rev: v3.6.1
     hooks:
       - id: editorconfig-checker
         name: Check EditorConfig rules
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.28.0
+    rev: v8.30.1
     hooks:
       - id: gitleaks
         name: Detect hardcoded secrets
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.38.1
+    rev: v1.45.0
     hooks:
       - id: typos
         name: Detect spelling typos
         args: ['--force-exclude']
         exclude: '.age'
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.23.0
+    rev: v9.24.0
     hooks:
       - id: commitlint
         name: Lint commit message

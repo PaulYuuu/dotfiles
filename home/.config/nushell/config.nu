@@ -17,5 +17,4 @@ source ($nu.default-config-dir | path join "conf.d" "05_keybindings.nu")
 source ($nu.default-config-dir | path join "conf.d" "06_prompt.nu")
 
 # Private configuration
-source ($nu.default-config-dir | path join "conf.d" "98_bitwarden.nu")
 source ($nu.default-config-dir | path join "conf.d" "99_private.nu")
