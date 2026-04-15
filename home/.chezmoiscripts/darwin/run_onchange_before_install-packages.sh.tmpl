@@ -1,7 +1,6 @@
 #!/bin/bash
+# brewfile-hash: {{ include "dot_config/homebrew/Brewfile" | sha256sum }}
 set -euo pipefail
 
 gum spin --spinner points --title "Installing/updating Homebrew packages" -- \
-  brew bundle --file=/dev/stdin <<'EOF'
-{{ includeTemplate "Brewfile" . | trim }}
-EOF
+  brew bundle --file="{{ .chezmoi.sourceDir }}/dot_config/homebrew/Brewfile"

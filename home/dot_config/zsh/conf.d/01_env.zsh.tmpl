@@ -21,14 +21,19 @@ export RUFF_CACHE_DIR="${XDG_CACHE_HOME}/ruff"
 export TART_HOME="${XDG_DATA_HOME}/tart"
 export TEALDEER_CONFIG_DIR="${XDG_CONFIG_HOME}/tealdeer"
 
-# Cargo
+# Rust
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 path+=("${CARGO_HOME}/bin")
 
 # Go
 export GOPATH="${XDG_DATA_HOME}/go"
 export GOMODCACHE="${XDG_CACHE_HOME}/go/mod"
 path+=("${GOPATH}/bin")
+
+# Mise
+export MISE_CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export MISE_RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 # Npm
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
