@@ -1,3 +1,7 @@
+# NOTE: Dependabot only reads .github/dependabot.yml from the default branch
+# (main). This file on guisu is therefore dead code. The real config lives in
+# the same path on main and uses `target-branch: guisu` to open PRs against
+# this branch. This file is kept on purpose for documentation.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
