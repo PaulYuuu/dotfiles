@@ -24,12 +24,12 @@ repos:
       - id: shfmt
         name: Format shell scripts
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: v0.11.0.1-1
     hooks:
       - id: shellcheck
         name: Check shell scripts
   - repo: https://github.com/editorconfig-checker/editorconfig-checker
-    rev: v3.9.0
+    rev: v4.0.1
     hooks:
       - id: editorconfig-checker
         name: Check EditorConfig rules
@@ -39,7 +39,7 @@ repos:
       - id: gitleaks
         name: Detect hardcoded secrets
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.48.0
+    rev: v1.50.1
     hooks:
       - id: typos
         name: Detect spelling typos
